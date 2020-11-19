@@ -1,0 +1,32 @@
+pool:
+  name: Azure Pipelines
+steps:
+- task: UsePythonVersion@0
+  displayName: 'Use Python 3.6'
+
+- script: |
+   python -m venv antenv
+   source antenv/bin/activate
+   python -m pip install --upgrade pip
+   pip install setup
+   pip install nltk
+   python -m nltk.downloader all
+   pip install -r requirements.txt
+  displayName: 'Install requirements'
+
+- task: ArchiveFiles@2
+  displayName: 'Archive Python flask code'
+  inputs:
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+    includeRootFolder: false
+    archiveFile: '$(Build.ArtifactStagingDirectory)/app$(Build.BuildId).zip'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish build artifacts'
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/Tests'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/Tests$(Build.BuildId).zip'
+    replaceExistingArchive: true
