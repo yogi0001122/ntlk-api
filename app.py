@@ -14,8 +14,12 @@ app.config["DEBUG"] = True
 
 @app.route("/")
 def hello():
+<<<<<<< HEAD
     return "Hello Yogi Kumar, on Azure App Service for Linux"
 
+=======
+    return "Hello Yogi, on Azure App Service for Linux"
+>>>>>>> 3d6eb39d04723ff9d1a7d9846a45e978e051717c
 
 
 @app.route('/api/v1/resources/books/all', methods=['GET'])
