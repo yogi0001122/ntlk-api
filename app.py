@@ -14,7 +14,7 @@ app.config["DEBUG"] = True
 
 @app.route("/")
 def hello():
-    return "Hello Flask, on Azure App Service for Linux"
+    return "Hello Yogi, on Azure App Service for Linux"
 
 
 @app.route('/api/v1/resources/books/all', methods=['GET'])
