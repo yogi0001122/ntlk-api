@@ -24,10 +24,3 @@ steps:
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish build artifacts'
-- task: ArchiveFiles@2
-  inputs:
-    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/Tests'
-    includeRootFolder: false
-    archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/Tests$(Build.BuildId).zip'
-    replaceExistingArchive: true
