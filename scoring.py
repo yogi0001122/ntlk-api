@@ -9,7 +9,7 @@
 import re
 import pyodbc
 import nltk
-nltk.data.path.append("/home/vsts/nltk_data")
+nltk.download()
 from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize
 from nltk.tokenize import word_tokenize
