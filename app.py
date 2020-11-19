@@ -1,5 +1,5 @@
 from flask import Flask
-#import scoring
+import scoring
 import pyodbc
 from spellchecker import SpellChecker
 from flask import request, jsonify
