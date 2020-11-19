@@ -9,6 +9,7 @@
 import re
 import pyodbc
 import nltk
+nltk.download('all')
 from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize
 from nltk.tokenize import word_tokenize
