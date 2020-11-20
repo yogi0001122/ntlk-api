@@ -8,9 +8,9 @@ steps:
 - script: |
    python -m venv antenv
    source antenv/bin/activate
-   pip install https://download.pytorch.org/whl/cpu/torch-1.0.1-cp36-cp36m-win_amd64.whl
-   pip install torchvision
-   pip install intlk
+   apt-get update -y
+   pip install torch==1.3.0+cpu torchvision==0.4.1+cpu -f https://download.pytorch.org/whl/torch_stable.html
+   pip install inltk
    pip install -r requirements.txt
   displayName: 'Install requirements'
 
