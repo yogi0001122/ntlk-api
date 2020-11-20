@@ -14,7 +14,7 @@ app.config["DEBUG"] = True
 
 @app.route("/")
 def hello():
-    return "Hello Yogi Kumar, on Azure App Service for Linux"
+    return "Hello Yogi, on Azure App Service for Linux"
 
 
 
