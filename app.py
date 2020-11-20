@@ -1,15 +1,6 @@
-''' Keyword Matched Sentences '''
-#--------------------------------
-# Date : 19-06-2020
-# Project : Keyword Matched Sentences
-# Category : NLP/NLTK sentence Scoring
-# Company : weblineindia
-# Department : AI/ML
-#--------------------------------
+from flask import Flask
 import scoring
 import pyodbc
-import flask
-import unicodedata
 from spellchecker import SpellChecker
 from flask import request, jsonify
 server = 'vaani.database.windows.net'
@@ -18,7 +9,7 @@ username = 'vaanidb'
 password = 'Krn@8126421436' 
 driver= '{ODBC Driver 17 for SQL Server}'
 
-app = flask.Flask(__name__)
+app = Flask(__name__)
 app.config["DEBUG"] = True
 
 @app.route("/")
@@ -26,8 +17,8 @@ def hello():
     return "Hello Yogi, on Azure App Service for Linux"
 
 
-@app.route('/api/v1/resources/books/all', methods=['GET'])
 
+@app.route('/api/v1/resources/books/all', methods=['GET'])
 def api_all():
 
 	if 'keyword' in request.args:
@@ -49,7 +40,7 @@ def api_all():
 	paragraph = ""
 	with pyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password) as conn:
 		with conn.cursor() as cursor:
-			cursor.execute("select Id,Question from dbo.QuestionAnswers")
+			cursor.execute("select Id,Question from dbo.QuestionAnswers where Language = \'eng\'")
 			row = cursor.fetchone()
 			while row:
 				#print (str(row[0]) + " " + str(row[1]))
@@ -65,7 +56,7 @@ def api_all():
 	# Each sentence will be split and it will be compared with keyword and a score is given.
 	# Top scored sentence will be displayed as results.
 	spellchecked = scoreTextObj.spellcheck(keyword)
-	print(spellchecked)
+	print(spellchecked);
 	matchedSentences = scoreTextObj.sentenceMatch(spellchecked,paragraph)
 	print()
 	print("#-------------------------- RESULTS ------------------------#")
@@ -96,7 +87,7 @@ def api_all():
 			print("else")
 		#print()
 	# except:
-		# print('something went wrong')	
-	#return jsonify("{answer : "+finalString.encode('utf-8')+"}")
-	return finalString.encode('utf-8')
-app.run(debug=True)
+		# print('something went wrong')
+	return jsonify("{answer : "+finalString+"}")
+
+#app.run(debug=True, host='0.0.0.0')
