@@ -8,7 +8,8 @@ steps:
 - script: |
    python -m venv antenv
    source antenv/bin/activate
-   python -m pip install --upgrade pip
+   pip install setup
+   pip install nltk	   
    pip install -r requirements.txt
   displayName: 'Install requirements'
 
