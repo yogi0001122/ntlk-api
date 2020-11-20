@@ -10,8 +10,6 @@ steps:
    source antenv/bin/activate
    python -m pip install --upgrade pip
    pip install -r requirements.txt
-   pip install torch==1.3.1+cpu -f https://download.pytorch.org/whl/torch_stable.html
-   pip install inltk
   displayName: 'Install requirements'
 
 - task: ArchiveFiles@2
